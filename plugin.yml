@@ -1,0 +1,13 @@
+name: pluginHider
+version: 1.2
+description: A plugin to prevent people from snooping on your plugins
+author: AssasinTreepig
+main: pluginhider.Main
+commands:
+    ?:
+      description: does not display the plugin list
+    Plreload:
+      description: reloads the config
+Permissions:
+   plugins.view:
+     default: op
