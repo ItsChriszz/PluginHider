@@ -6,13 +6,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin{
+public class Main extends JavaPlugin {
 
 
 public void onEnable() {
+	saveDefaultConfig();
 }
 
 public void onDisable() {
+	reloadConfig();
 }
 
 @Override
@@ -22,8 +24,17 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
             Player p = (Player) sender;
             if(!p.hasPermission("plugins.view")) {
             	Player player = p.getPlayer();
-            	player.sendMessage(ChatColor.RED + "you may only view the plugins with /plugins /? is invalid");
+    			player.sendMessage(
+    					ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.no-permission")));
             }
+            	if (cmd.getName().equalsIgnoreCase("PlReload")) {
+            		Player player = p.getPlayer();
+            		if (player.isOp()) {
+            			reloadConfig();
+            			sender.sendMessage(
+            					ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.reload-config")));
+            		}
+            	}
         }
     }
 	return true;
