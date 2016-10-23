@@ -1,0 +1,3 @@
+messages:
+  no-permission: '&cplugins can only be viewed with /?'
+  reload-config: '&athe config has been reloaded'
