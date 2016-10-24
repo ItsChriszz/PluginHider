@@ -27,9 +27,11 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
     			player.sendMessage(
     					ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.no-permission")));
             }
+            if(p.hasPermission("plugins.view")) {
+            	p.performCommand("plugins");
+            }
             	if (cmd.getName().equalsIgnoreCase("PlReload")) {
-            		Player player = p.getPlayer();
-            		if (player.isOp()) {
+            		if(p.hasPermission("pluginhider.reload")) {
             			reloadConfig();
             			sender.sendMessage(
             					ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.reload-config")));
